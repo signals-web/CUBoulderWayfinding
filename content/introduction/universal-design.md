@@ -1,0 +1,5 @@
+# Universal Design
+
+Wayfinding is fundamentally a tool for equity, and our commitment to universal design ensures that the mental map of the campus is available to all users regardless of mobility or visual ability. Accessibility is not a separate layer of our system; it is an inseparable component of our site design. Every sign installation requires a level, firm surface and a minimum 5-foot turning radius to accommodate wheelchair access.
+
+We utilize a specific, high-contrast "ADA Blue" to provide a visual "punch" for all accessible route markers, making them immediately identifiable to users with low vision. Our standards expand beyond basic regulatory compliance to include services such as testing accommodations and disability offices, ensuring that every user can navigate the university with dignity. By integrating tactile characters, Grade 2 Braille, and detectable warning strips, we ensure that the navigational cues of the campus are accessible to those who read the world by touch as well as by sight.

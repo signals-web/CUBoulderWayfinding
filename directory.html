@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directory | CU Boulder Wayfinding Standards</title>
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Theme initialization (immediate to prevent FOUC) -->
+    <script>
+        (function () {
+            const saved = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = saved || (prefersDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+            if (theme === 'dark') document.documentElement.classList.add('dark');
+        })();
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-[var(--bg)] text-[var(--text)] min-h-screen font-sans antialiased">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-[var(--border)]"
+        style="view-transition-name: site-header;">
+        <div class="max-w-[1920px] mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="header-grid gap-12">
+                <!-- Left: Branding -->
+                <a href="index.html" class="flex items-center gap-4">
+                    <div
+                        class="w-10 h-10 bg-black text-cu-gold flex items-center justify-center font-bold text-sm rounded">
+                        CU</div>
+                    <div class="header-branding text-black">Wayfinding Standards</div>
+                </a>
+
+                <!-- Center: Mode Switcher -->
+                <div class="flex justify-center">
+                    <nav class="mode-switcher">
+                        <a href="page.html?section=introduction&page=_index" class="mode-btn"
+                            id="mode-standard">Standard</a>
+                        <a href="directory.html" class="mode-btn" id="mode-directory">Directory</a>
+                        <a href="page.html?section=sign-types&page=pictorial-index" class="mode-btn"
+                            id="mode-technical">Technical</a>
+                    </nav>
+                </div>
+
+                <!-- Right: Actions -->
+                <div class="flex items-center justify-end gap-6">
+                    <div class="search-wrapper hidden lg:block">
+                        <i data-lucide="search" class="search-icon w-4 h-4"></i>
+                        <input type="text" placeholder="Search standards..." class="search-field">
+                    </div>
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-black/5 transition-colors">
+                        <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
+                        <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+                    </button>
+                    <button id="mobile-menu-btn"
+                        class="p-2 text-[var(--text-secondary)] hover:bg-black/5 rounded-lg lg:hidden">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="py-24">
+        <div id="manual-grid" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-20 text-center">
+                <h2 class="text-xs font-bold uppercase tracking-widest text-[var(--text-secondary)] mb-3">Manual
+                    Directory</h2>
+                <p class="text-3xl font-bold">Standardize. Navigate. Steward.</p>
+                <p class="mt-4 text-[var(--text-secondary)]">Select a primary module below to explore technical
+                    standards and narrative logic.</p>
+            </div>
+
+            <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                <!-- Cards will be kept here identically to the old index.html -->
+                <!-- Introduction -->
+                <a href="page.html?section=introduction&page=_index&from=directory"
+                    class="reveal-up group relative bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                    <div
+                        class="w-12 h-12 bg-[var(--bg-secondary)] rounded-xl flex items-center justify-center mb-6 group-hover:bg-[var(--cu-gold)] transition-colors">
+                        <svg class="w-6 h-6 text-[var(--accent-text)] group-hover:text-black" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Introduction</h3>
+                    <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-6">Vision, philosophy, and
+                        foundational principles for CU Boulder wayfinding.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span
+                            class="text-[10px] font-bold uppercase tracking-widest bg-gray-100 px-2 py-1 rounded">Vision</span>
+                        <span
+                            class="text-[10px] font-bold uppercase tracking-widest bg-gray-100 px-2 py-1 rounded">Philosophy</span>
+                        <span
+                            class="text-[10px] font-bold uppercase tracking-widest bg-gray-100 px-2 py-1 rounded">Universal
+                            Design</span>
+                    </div>
+                    <span class="text-sm font-bold text-[var(--accent-text)] group-hover:underline">Explore section
+                        →</span>
+                </a>
+
+                <!-- Master Narrative -->
+                <a href="page.html?section=master-narrative&page=_index&from=directory"
+                    class="reveal-up group relative bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                    <div
+                        class="w-12 h-12 bg-[var(--bg-secondary)] rounded-xl flex items-center justify-center mb-6 group-hover:bg-[var(--cu-gold)] transition-colors">
+                        <svg class="w-6 h-6 text-[var(--accent-text)] group-hover:text-black" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Master Narrative</h3>
+                    <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-6">The philosophical framework
+                        guiding sign content and placement decisions.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span
+                            class="text-[10px] font-bold uppercase tracking-widest bg-[var(--bg-secondary)] text-[var(--text-secondary)] px-2 py-1 rounded">Scale</span>
+                        <span
+                            class="text-[10px] font-bold uppercase tracking-widest bg-[var(--bg-secondary)] text-[var(--text-secondary)] px-2 py-1 rounded">Neighborhoods</span>
+                        <span
+                            class="text-[10px] font-bold uppercase tracking-widest bg-[var(--bg-secondary)] text-[var(--text-secondary)] px-2 py-1 rounded">Content</span>
+                    </div>
+                    <span class="text-sm font-bold text-[var(--accent-text)] group-hover:underline">Explore section
+                        →</span>
+                </a>
+
+                <!-- Sign Types -->
+                <a href="page.html?section=sign-types&page=_index&from=directory"
+                    class="reveal-up group relative bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                    <div
+                        class="w-12 h-12 bg-[var(--bg-secondary)] rounded-xl flex items-center justify-center mb-6 group-hover:bg-[var(--cu-gold)] transition-colors">
+                        <svg class="w-6 h-6 text-[var(--accent-text)] group-hover:text-black" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Sign Types</h3>
+                    <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-6">Pictorial index and technical
+                        specifications for all sign categories.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span
+                            class="text-[10px] font-bold uppercase tracking-widest bg-[var(--bg-secondary)] text-[var(--text-secondary)] px-2 py-1 rounded">Gateway</span>
+                        <span
+                            class="text-[10px] font-bold uppercase tracking-widest bg-[var(--bg-secondary)] text-[var(--text-secondary)] px-2 py-1 rounded">Parking</span>
+                        <span
+                            class="text-[10px] font-bold uppercase tracking-widest bg-[var(--bg-secondary)] text-[var(--text-secondary)] px-2 py-1 rounded">Building
+                            ID</span>
+                    </div>
+                    <span class="text-sm font-bold text-[var(--accent-text)] group-hover:underline">Explore section
+                        →</span>
+                </a>
+
+                <!-- Graphic Standards -->
+                <a href="page.html?section=graphic-standards&page=_index&from=directory"
+                    class="reveal-up group relative bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                    <div
+                        class="w-12 h-12 bg-[var(--bg-secondary)] rounded-xl flex items-center justify-center mb-6 group-hover:bg-[var(--cu-gold)] transition-colors">
+                        <svg class="w-6 h-6 text-[var(--accent-text)] group-hover:text-black" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Graphic Standards</h3>
+                    <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-6">Typography, color, iconography,
+                        and arrow specifications.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span
+                            class="text-[10px] font-bold uppercase tracking-widest bg-[var(--bg-secondary)] text-[var(--text-secondary)] px-2 py-1 rounded">Brand</span>
+                        <span
+                            class="text-[10px] font-bold uppercase tracking-widest bg-[var(--bg-secondary)] text-[var(--text-secondary)] px-2 py-1 rounded">Typography</span>
+                        <span
+                            class="text-[10px] font-bold uppercase tracking-widest bg-[var(--bg-secondary)] text-[var(--text-secondary)] px-2 py-1 rounded">Color</span>
+                    </div>
+                    <span class="text-sm font-bold text-[var(--accent-text)] group-hover:underline">Explore section
+                        →</span>
+                </a>
+
+                <!-- Policies -->
+                <a href="page.html?section=policies&page=_index&from=directory"
+                    class="reveal-up group relative bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                    <div
+                        class="w-12 h-12 bg-[var(--bg-secondary)] rounded-xl flex items-center justify-center mb-6 group-hover:bg-[var(--cu-gold)] transition-colors">
+                        <svg class="w-6 h-6 text-[var(--accent-text)] group-hover:text-black" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Policies</h3>
+                    <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-6">Digital signage, temporary
+                        placement, and maintenance guidelines.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span
+                            class="text-[10px] font-bold uppercase tracking-widest bg-[var(--bg-secondary)] text-[var(--text-secondary)] px-2 py-1 rounded">Digital</span>
+                        <span
+                            class="text-[10px] font-bold uppercase tracking-widest bg-[var(--bg-secondary)] text-[var(--text-secondary)] px-2 py-1 rounded">Temporary</span>
+                        <span
+                            class="text-[10px] font-bold uppercase tracking-widest bg-[var(--bg-secondary)] text-[var(--text-secondary)] px-2 py-1 rounded">Maintenance</span>
+                    </div>
+                    <span class="text-sm font-bold text-[var(--accent-text)] group-hover:underline">Explore section
+                        →</span>
+                </a>
+
+                <!-- Approval Process -->
+                <a href="page.html?section=approval-process&page=_index&from=directory"
+                    class="reveal-up group relative bg-[var(--card-bg)] border border-[var(--border)] rounded-2xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                    <div
+                        class="w-12 h-12 bg-[var(--bg-secondary)] rounded-xl flex items-center justify-center mb-6 group-hover:bg-[var(--cu-gold)] transition-colors">
+                        <svg class="w-6 h-6 text-[var(--accent-text)] group-hover:text-black" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Approval Process</h3>
+                    <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-6">Workflows and authority
+                        matrices for signage requests.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span
+                            class="text-[10px] font-bold uppercase tracking-widest bg-[var(--bg-secondary)] text-[var(--text-secondary)] px-2 py-1 rounded">Authority</span>
+                        <span
+                            class="text-[10px] font-bold uppercase tracking-widest bg-[var(--bg-secondary)] text-[var(--text-secondary)] px-2 py-1 rounded">Primary
+                            Campus</span>
+                        <span
+                            class="text-[10px] font-bold uppercase tracking-widest bg-[var(--bg-secondary)] text-[var(--text-secondary)] px-2 py-1 rounded">Workflow</span>
+                    </div>
+                    <span class="text-xs font-bold text-[var(--accent-text)] group-hover:underline">Explore section
+                        →</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-[var(--border)] py-12">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-sm text-[var(--text-secondary)]">© 2026 University of Colorado Boulder. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Basic Scripts -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

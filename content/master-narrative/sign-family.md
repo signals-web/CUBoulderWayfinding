@@ -1,0 +1,7 @@
+# The Sign Family
+
+## The Sign Family: Proportions and Architectural Integration
+
+The CU Boulder sign family—comprised of Main, Primary, Secondary, Nudge, Accessible Route, and Building ID types—is designed to feel like a permanent, grounded extension of the university's architectural legacy. To eliminate the visual inconsistencies of previous eras, we have standardized our base logic around an eight-inch single or double-stack stone base. These bases provide the necessary architectural weight to ground the system in the Boulder landscape while simultaneously protecting the signage from environmental wear and maintenance equipment. We have specifically redesigned our "Nudge" signs to utilize a solid square base, replacing the top-heavy, post-mounted markers of the past with a form that feels substantial and integrated.
+
+Our visual strategy further supports architectural harmony through a "layer reduction" approach. By bringing the colors of the upper information zones closer to the color of the sign body, we reduce the "banding" effect common in institutional signage, resulting in a cleaner profile that complements our campus masonry rather than competing with it. This commitment to integration ensures that while the signs provide essential wayfinding information, they also serve a placemaking role, establishing a unique identity that reinforces the university’s brand image in a dignified, environmental form.

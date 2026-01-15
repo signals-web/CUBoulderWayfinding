@@ -1,0 +1,7 @@
+# Content Standards
+
+## Content Standards & The Discipline of Restraint
+
+In an era of information saturation, the most hospitable gift the university can provide its visitors is absolute clarity. Our content standards are governed by the mantra that just because space exists for text does not mean that space should be used. We recognize that the primary purpose of a building sign is identification, and we view the inclusion of extensive programmatic lists or detailed histories as "information creep" that threatens to diminish the sign’s core function. When interpretive content is necessary, it must remain strictly subordinate to the primary building name and is limited to one or two concise, timeless sentences.
+
+This discipline of restraint extends to the "Thick Edges" of our map signage, which are zones reserved for non-verbal system cues such as orientation arrows, movement affordances, and accessibility icons. When micro-interpretation is permitted on these edges, it adheres to a strict ceiling of twenty-five to fifty words and is never presented in the form of lists, chronologies, or paragraphs. A visitor pausing at Fiske Planetarium, for example, should encounter a glance-able layer of meaning that identifies the facility as a center for astronomy and immersive experience, rather than a dense schedule of showtimes that would impede the flow of traffic. By managing the architecture of attention in this way, we maintain a navigable roadscape that is functional for the user in motion.

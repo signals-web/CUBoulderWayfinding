@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading... | CU Boulder Wayfinding Standards</title>
+
+    <!-- Tailwind via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'selector',
+            theme: {
+                extend: {
+                    colors: {
+                        'cu-gold': '#CFB87C',
+                        'cu-gold-accessible': '#8D7334',
+                        'cu-dark-gray': '#565A5C',
+                        'cu-light-gray': '#A2A4A3',
+                        'cu-light-gold': '#F3F0E9',
+                    },
+                    fontFamily: {
+                        sans: ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/styles.css">
+    <meta name="view-transition" content="same-origin">
+
+    <!-- Theme initialization (immediate to prevent FOUC) -->
+    <script>
+            (function () {
+                const saved = localStorage.getItem('theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const theme = saved || (prefersDark ? 'dark' : 'light');
+                document.documentElement.setAttribute('data-theme', theme);
+                if (theme === 'dark') document.documentElement.classList.add('dark');
+            })();
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Marked.js for markdown rendering -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
+<body class="bg-[var(--bg)] text-[var(--text)] font-sans antialiased">
+
+    <!-- Header -->
+    <header
+        class="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--bg)]/95 backdrop-blur supports-[backdrop-filter]:bg-[var(--bg)]/80"
+        style="view-transition-name: site-header;">
+        <div class="max-w-[1920px] mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="header-grid gap-12">
+                <!-- Left: Branding -->
+                <a href="index.html" class="flex items-center gap-4">
+                    <div
+                        class="w-10 h-10 bg-black text-cu-gold flex items-center justify-center font-bold text-sm rounded">
+                        CU</div>
+                    <div class="header-branding text-black">Wayfinding Standards</div>
+                </a>
+
+                <!-- Center: Mode Switcher -->
+                <div class="flex justify-center">
+                    <nav class="mode-switcher">
+                        <a href="page.html?section=introduction&page=_index" class="mode-btn"
+                            id="mode-standard">Standard</a>
+                        <a href="directory.html" class="mode-btn" id="mode-directory">Directory</a>
+                        <a href="page.html?section=sign-types&page=pictorial-index" class="mode-btn"
+                            id="mode-technical">Technical</a>
+                    </nav>
+                </div>
+
+                <!-- Right: Actions -->
+                <div class="flex items-center justify-end gap-6">
+                    <div class="search-wrapper hidden lg:block">
+                        <i data-lucide="search" class="search-icon w-4 h-4"></i>
+                        <input type="text" placeholder="Search standards..." class="search-field">
+                    </div>
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-black/5 transition-colors">
+                        <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
+                        <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+                    </button>
+                    <button id="mobile-menu-btn"
+                        class="p-2 text-[var(--text-secondary)] hover:bg-black/5 rounded-lg lg:hidden">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu -->
+        <nav id="mobile-menu" class="hidden lg:hidden border-t border-[var(--border)] bg-[var(--bg)]">
+            <div class="px-4 py-4 space-y-1" id="mobile-nav">
+                <!-- Populated by JavaScript -->
+            </div>
+        </nav>
+    </header>
+
+    <!-- Layout v2 (4 columns) -->
+    <div class="layout-v2">
+
+        <aside class="col-sitemap hidden lg:block" style="view-transition-name: col-sitemap;">
+            <nav class="p-6">
+                <a href="index.html"
+                    class="text-base text-[var(--text-secondary)] hover:text-black mb-12 block tracking-widest font-bold">←
+                    Home</a>
+                <div id="global-sections-nav" class="space-y-4">
+                    <!-- Populated by JavaScript -->
+                </div>
+            </nav>
+        </aside>
+
+        <aside class="col-nav hidden xl:block" style="view-transition-name: col-nav;">
+            <nav class="p-6">
+                <p class="text-base font-bold tracking-widest text-[var(--text-secondary)] mb-6">Contents</p>
+                <ul id="section-pages-nav" class="space-y-1">
+                    <!-- Populated by JavaScript -->
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- Column 3: Narrative (Main Content) -->
+        <main class="col-narrative">
+            <div class="max-w-[850px]">
+
+                <!-- Breadcrumb -->
+                <nav id="breadcrumb" class="text-base uppercase tracking-widest text-[var(--text-secondary)] mb-10">
+                    <!-- Populated by JavaScript -->
+                </nav>
+
+                <!-- Page header -->
+                <header id="page-header" class="mb-12">
+                    <!-- Populated by JavaScript -->
+                </header>
+
+                <!-- Content (markdown rendered here) -->
+                <article id="content" class="prose">
+                    <div class="flex items-center justify-center py-12">
+                        <div class="animate-pulse text-[var(--text-secondary)]">Loading content...</div>
+                    </div>
+                </article>
+
+                <!-- Previous/Next navigation -->
+                <nav id="page-nav" class="flex justify-between items-center mt-16 pt-8 border-t border-[var(--border)]">
+                    <!-- Populated by JavaScript -->
+                </nav>
+
+            </div>
+        </main>
+
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-[var(--border)]">
+        <div class="max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+            <p class="text-sm text-[var(--text-secondary)]">
+                © University of Colorado Boulder. Version 1.0
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/content-loader.js"></script>
+</body>
+
+</html>
