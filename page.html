@@ -51,114 +51,127 @@
 
     <!-- Header -->
     <header
-        class="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--bg)]/95 backdrop-blur supports-[backdrop-filter]:bg-[var(--bg)]/80"
+        class="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--bg)]/95 backdrop-blur supports-[backdrop-filter]:bg-[var(--bg)]/80 px-12"
         style="view-transition-name: site-header;">
-        <div class="max-w-[1920px] mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="header-grid gap-12">
-                <!-- Left: Branding -->
-                <a href="index.html" class="flex items-center gap-4">
-                    <div
-                        class="w-10 h-10 bg-black text-cu-gold flex items-center justify-center font-bold text-sm rounded">
-                        CU</div>
-                    <div class="header-branding text-black">Wayfinding Standards</div>
-                </a>
+        <div class="header-grid gap-12 px-12 h-20">
+            <!-- Left: Branding -->
+            <a href="index.html" class="flex items-center">
+                <div class="header-branding text-[var(--text)]">Wayfinding Standards</div>
+            </a>
 
-                <!-- Center: Mode Switcher -->
-                <div class="flex justify-center">
-                    <nav class="mode-switcher">
-                        <a href="page.html?section=introduction&page=_index" class="mode-btn"
-                            id="mode-standard">Standard</a>
-                        <a href="directory.html" class="mode-btn" id="mode-directory">Directory</a>
-                        <a href="page.html?section=sign-types&page=pictorial-index" class="mode-btn"
-                            id="mode-technical">Technical</a>
-                    </nav>
-                </div>
+            <!-- Center: Mode Switcher -->
+            <div class="flex justify-center">
+                <nav class="mode-switcher">
+                    <a href="page.html?section=introduction&page=_index" class="mode-btn"
+                        id="mode-standard">Standard</a>
+                    <a href="directory.html" class="mode-btn" id="mode-directory">Directory</a>
+                    <a href="page.html?section=sign-types&page=pictorial-index" class="mode-btn"
+                        id="mode-technical">Technical</a>
+                </nav>
+            </div>
 
-                <!-- Right: Actions -->
-                <div class="flex items-center justify-end gap-6">
-                    <div class="search-wrapper hidden lg:block">
-                        <i data-lucide="search" class="search-icon w-4 h-4"></i>
-                        <input type="text" placeholder="Search standards..." class="search-field">
-                    </div>
-                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-black/5 transition-colors">
-                        <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
-                        <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
-                    </button>
-                    <button id="mobile-menu-btn"
-                        class="p-2 text-[var(--text-secondary)] hover:bg-black/5 rounded-lg lg:hidden">
-                        <i data-lucide="menu" class="w-6 h-6"></i>
-                    </button>
+            <!-- Right: Actions -->
+            <div class="flex items-center justify-end gap-6">
+                <div class="search-wrapper hidden lg:block">
+                    <i data-lucide="search" class="search-icon w-4 h-4"></i>
+                    <input type="text" placeholder="Search standards..." class="search-field">
                 </div>
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-black/5 transition-colors">
+                    <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
+                    <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+                </button>
+                <button id="mobile-menu-btn"
+                    class="p-2 text-[var(--text-secondary)] hover:bg-black/5 rounded-lg lg:hidden">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
             </div>
         </div>
 
-        <!-- Mobile menu -->
-        <nav id="mobile-menu" class="hidden lg:hidden border-t border-[var(--border)] bg-[var(--bg)]">
-            <div class="px-4 py-4 space-y-1" id="mobile-nav">
-                <!-- Populated by JavaScript -->
-            </div>
-        </nav>
     </header>
 
-    <!-- Layout v2 (4 columns) -->
-    <div class="layout-v2">
+    <!-- Layout V6 (Architectural Calm Prototype) -->
+    <div class="layout-v6">
 
-        <aside class="col-sitemap hidden lg:block" style="view-transition-name: col-sitemap;">
-            <nav class="p-6">
+        <!-- Column 1: Master TOC -->
+        <aside class="col-sitemap-v6">
+            <div class="baseline-sync">
                 <a href="index.html"
-                    class="text-base text-[var(--text-secondary)] hover:text-black mb-12 block tracking-widest font-bold">←
-                    Home</a>
-                <div id="global-sections-nav" class="space-y-4">
+                    class="text-xs text-[var(--text-secondary)] hover:text-[var(--cu-gold-accessible)] mb-8 block tracking-widest font-bold uppercase transition-colors home-link">
+                    <span class="home-arrow">←</span> Home
+                </a>
+                <div id="global-sections-nav" class="space-y-1">
                     <!-- Populated by JavaScript -->
                 </div>
-            </nav>
+            </div>
         </aside>
 
-        <aside class="col-nav hidden xl:block" style="view-transition-name: col-nav;">
-            <nav class="p-6">
-                <p class="text-base font-bold tracking-widest text-[var(--text-secondary)] mb-6">Contents</p>
+        <!-- Column 2: Anchor Bar -->
+        <aside class="col-nav-v6">
+            <div class="baseline-sync">
+                <p class="text-xs font-bold tracking-widest text-[var(--text-secondary)] uppercase mb-8">Contents</p>
                 <ul id="section-pages-nav" class="space-y-1">
                     <!-- Populated by JavaScript -->
                 </ul>
-            </nav>
+            </div>
         </aside>
 
-        <!-- Column 3: Narrative (Main Content) -->
-        <main class="col-narrative">
-            <div class="max-w-[850px]">
-
+        <!-- Column 3: The Narrative -->
+        <main class="col-narrative-v6">
+            <div class="narrative-inner baseline-sync">
                 <!-- Breadcrumb -->
-                <nav id="breadcrumb" class="text-base uppercase tracking-widest text-[var(--text-secondary)] mb-10">
+                <nav id="breadcrumb" class="text-xs font-bold uppercase tracking-widest text-[var(--cu-gold)] mb-12">
                     <!-- Populated by JavaScript -->
                 </nav>
 
-                <!-- Page header -->
-                <header id="page-header" class="mb-12">
-                    <!-- Populated by JavaScript -->
-                </header>
-
-                <!-- Content (markdown rendered here) -->
+                <!-- Page content container -->
                 <article id="content" class="prose">
-                    <div class="flex items-center justify-center py-12">
-                        <div class="animate-pulse text-[var(--text-secondary)]">Loading content...</div>
-                    </div>
+                    <div id="page-header"></div>
+                    <!-- Markdown injected here -->
                 </article>
 
-                <!-- Previous/Next navigation -->
-                <nav id="page-nav" class="flex justify-between items-center mt-16 pt-8 border-t border-[var(--border)]">
+                <!-- Navigation Footer (JS injected) -->
+                <div id="page-nav"
+                    class="flex items-center justify-between border-t border-[var(--border)] pt-8 mt-12 mb-20 group">
                     <!-- Populated by JavaScript -->
-                </nav>
-
+                </div>
             </div>
         </main>
 
+        <aside class="col-evidence-v6">
+            <div class="baseline-sync">
+                <p class="text-xs font-bold uppercase tracking-widest text-[var(--text-secondary)] mb-8">
+                    Figures and Illustrations
+                </p>
+                <div id="visual-evidence-container" class="space-y-12">
+                    <!-- Images/Figures from MD -->
+                </div>
+            </div>
+        </aside>
+
+    </div>
+
+    <!-- Mobile Drawer Overlay -->
+    <div id="drawer-overlay" class="drawer-overlay"></div>
+
+    <!-- Mobile Drawer (Sliding Menu) -->
+    <nav id="mobile-menu" class="lg:hidden">
+        <div class="mobile-drawer-header">
+            <span class="text-xs font-bold uppercase tracking-widest text-[var(--cu-gold)]">Navigation</span>
+            <button id="close-drawer" class="p-1">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+        </div>
+        <div class="px-6 py-8 space-y-8 overflow-y-auto" id="mobile-nav-content">
+            <!-- Populated by JavaScript from existing columns -->
+        </div>
+    </nav>
 
     </div>
 
     <!-- Footer -->
-    <footer class="border-t border-[var(--border)]">
-        <div class="max-w-6xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
-            <p class="text-sm text-[var(--text-secondary)]">
+    <footer class="bg-[var(--cu-gold)] py-12">
+        <div class="max-w-6xl mx-auto px-12">
+            <p class="text-sm text-black">
                 © University of Colorado Boulder. Version 1.0
             </p>
         </div>

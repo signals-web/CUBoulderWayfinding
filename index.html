@@ -45,42 +45,63 @@
 
 <body class="bg-[var(--bg)] text-[var(--text)] font-sans antialiased">
 
+  <!-- Intro Splash Screen -->
+  <div id="splash-screen" class="splash-screen">
+    <div class="splash-content">
+      <h1 class="splash-title">Wayfinding<br>Standards</h1>
+      <p class="splash-hint">Click to Enter</p>
+    </div>
+  </div>
+
   <!-- Header Overlay for Hero -->
-  <header class="header-hero-overlay border-b border-transparent" style="view-transition-name: site-header;">
-    <div class="max-w-[1920px] mx-auto px-6 h-20 flex items-center justify-between">
-      <div class="header-grid gap-12">
-        <!-- Left: Branding -->
-        <a href="index.html" class="flex items-center gap-4">
-          <div class="flex h-10 w-10 items-center justify-center rounded bg-black text-cu-gold font-bold text-sm">
-            CU
-          </div>
-          <div class="header-branding text-[var(--text)]">Wayfinding Standards</div>
-        </a>
+  <header class="header-hero-overlay border-b border-transparent px-12" style="view-transition-name: site-header;">
+    <div class="header-grid gap-12 px-12 h-20">
+      <!-- Left: Branding -->
+      <a href="index.html" class="flex items-center">
+        <div class="header-branding text-[var(--text)]">Wayfinding Standards</div>
+      </a>
 
-        <!-- Center: Switcher -->
-        <div class="flex justify-center">
-          <nav class="mode-switcher">
-            <a href="page.html?section=introduction&page=_index" class="mode-btn" id="mode-standard">Standard</a>
-            <a href="directory.html" class="mode-btn" id="mode-directory">Directory</a>
-            <a href="page.html?section=sign-types&page=pictorial-index" class="mode-btn"
-              id="mode-technical">Technical</a>
-          </nav>
-        </div>
+      <!-- Center: Mode Switcher -->
+      <div class="flex justify-center">
+        <nav class="mode-switcher">
+          <a href="page.html?section=introduction&page=_index" class="mode-btn" id="mode-standard">Standard</a>
+          <a href="directory.html" class="mode-btn" id="mode-directory">Directory</a>
+          <a href="page.html?section=sign-types&page=pictorial-index" class="mode-btn" id="mode-technical">Technical</a>
+        </nav>
+      </div>
 
-        <!-- Right: Actions -->
-        <div class="flex items-center justify-end gap-6">
-          <div class="search-wrapper hidden lg:block">
-            <i data-lucide="search" class="search-icon w-4 h-4"></i>
-            <input type="text" placeholder="Search standards..." class="search-field">
-          </div>
-          <button id="theme-toggle" class="p-2 rounded-full hover:bg-black/10 transition-colors">
-            <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
-            <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
-          </button>
+      <!-- Right: Actions -->
+      <div class="flex items-center justify-end gap-6">
+        <div class="search-wrapper hidden lg:block">
+          <i data-lucide="search" class="search-icon w-4 h-4"></i>
+          <input type="text" placeholder="Search standards..." class="search-field">
         </div>
+        <button id="theme-toggle" class="p-2 rounded-full hover:bg-black/10 transition-colors">
+          <i data-lucide="moon" class="w-5 h-5 dark:hidden"></i>
+          <i data-lucide="sun" class="w-5 h-5 hidden dark:block"></i>
+        </button>
+        <button id="mobile-menu-btn" class="p-2 text-[var(--text-secondary)] hover:bg-black/5 rounded-lg lg:hidden">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
       </div>
     </div>
   </header>
+
+  <!-- Mobile Drawer Overlay -->
+  <div id="drawer-overlay" class="drawer-overlay"></div>
+
+  <!-- Mobile Drawer (Sliding Menu) -->
+  <nav id="mobile-menu" class="lg:hidden">
+    <div class="mobile-drawer-header">
+      <span class="text-xs font-bold uppercase tracking-widest text-[var(--cu-gold)]">Navigation</span>
+      <button id="close-drawer" class="p-1">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+    </div>
+    <div class="px-6 py-8 space-y-8 overflow-y-auto" id="mobile-nav-content">
+      <!-- Populated by JavaScript -->
+    </div>
+  </nav>
 
   <!-- Main content -->
   <main>

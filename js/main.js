@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   initThemeToggle();
   initMobileMenu();
+  initSplashScreen();
   updateSwitcherState(section, page, isDirectory);
   initLucide();
 
@@ -65,11 +66,26 @@ function initThemeToggle() {
 
 function initMobileMenu() {
   const menuBtn = document.getElementById('mobile-menu-btn');
+  const closeBtn = document.getElementById('close-drawer');
   const mobileMenu = document.getElementById('mobile-menu');
+  const overlay = document.getElementById('drawer-overlay');
 
-  if (menuBtn && mobileMenu) {
-    menuBtn.addEventListener('click', function () {
-      mobileMenu.classList.toggle('hidden');
+  if (menuBtn && mobileMenu && overlay) {
+    const toggleMenu = () => {
+      mobileMenu.classList.toggle('open');
+      overlay.classList.toggle('open');
+      document.body.classList.toggle('overflow-hidden');
+    };
+
+    menuBtn.addEventListener('click', toggleMenu);
+    if (closeBtn) closeBtn.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
+
+    // Close on escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+        toggleMenu();
+      }
     });
   }
 }
@@ -93,5 +109,28 @@ function updateSwitcherState(section, page, isDirectory) {
     modeTechnical.classList.add('active');
   } else {
     modeStandard.classList.add('active');
+  }
+}
+
+function initSplashScreen() {
+  const splash = document.getElementById('splash-screen');
+  if (splash) {
+    // Check if we've already seen the splash this session
+    const hasSeenSplash = sessionStorage.getItem('hasSeenSplash');
+
+    if (hasSeenSplash) {
+      splash.style.display = 'none';
+      return;
+    }
+
+    splash.addEventListener('click', function () {
+      splash.classList.add('fade-out');
+      sessionStorage.setItem('hasSeenSplash', 'true');
+
+      // Remove from DOM after transition for performance
+      setTimeout(() => {
+        splash.remove();
+      }, 800);
+    });
   }
 }

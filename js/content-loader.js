@@ -30,17 +30,17 @@ const SITE_STRUCTURE = {
         ]
     },
     'sign-types': {
-        title: 'Sign Types',
+        title: 'Sign Types & Specifications',
         pages: [
             { slug: '_index', title: 'Overview' },
-            { slug: 'pictorial-index', title: 'Pictorial Index' },
-            { slug: 'gateway-boundary', title: 'Gateway & Boundary' },
-            { slug: 'parking', title: 'Parking' },
-            { slug: 'bicycle', title: 'Bicycle' },
-            { slug: 'pedestrian-maps', title: 'Pedestrian & Maps' },
-            { slug: 'accessibility', title: 'Accessibility' },
-            { slug: 'building-id', title: 'Building ID' },
-            { slug: 'commemorative', title: 'Commemorative' }
+            { slug: 'pictorial-index', title: 'Signage Pictorial Index' },
+            { slug: 'gateway-boundary', title: 'Gateway & Boundary Signage' },
+            { slug: 'parking', title: 'Parking Signage' },
+            { slug: 'bicycle', title: 'Bicycle-Related Signage' },
+            { slug: 'pedestrian-maps', title: 'Pedestrian Wayfinding + Maps' },
+            { slug: 'accessibility', title: 'Accessibility Signage' },
+            { slug: 'building-id', title: 'Building Identification Signage' },
+            { slug: 'commemorative', title: 'Commemorative / Donor / Interpretive Signage' }
         ]
     },
     'graphic-standards': {
@@ -143,17 +143,35 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 
     // Handle mobile nav
-    const mobileNav = document.getElementById('mobile-nav');
-    if (mobileNav) {
-        mobileNav.innerHTML = `
-            <a href="index.html" class="block px-3 py-2 text-sm text-[var(--text-secondary)]">← Home</a>
-            <p class="px-3 py-2 text-xs font-semibold uppercase tracking-wider text-[var(--text-secondary)]">${sectionData.title}</p>
-            ${sectionData.pages.map(p => `
-                <a href="page.html?section=${section}&page=${p.slug}" class="block px-3 py-2 text-sm rounded-lg ${p.slug === page ? 'bg-[var(--bg-secondary)] text-cu-gold' : ''}">
-                    ${p.title}
-                </a>
-            `).join('')}
-        `;
+    const mobileNavContent = document.getElementById('mobile-nav-content');
+    if (mobileNavContent) {
+        // Clone the sitemap and section pages into the drawer
+        const sitemap = document.getElementById('global-sections-nav');
+        const sectionNav = document.getElementById('section-pages-nav');
+
+        let drawerHtml = '';
+
+        if (sitemap) {
+            drawerHtml += `
+                <div class="space-y-4">
+                    <p class="text-xs font-bold uppercase tracking-widest text-[var(--accent)] mb-4">Sitemap</p>
+                    ${sitemap.innerHTML}
+                </div>
+            `;
+        }
+
+        if (sectionNav) {
+            drawerHtml += `
+                <div class="space-y-4">
+                    <p class="text-xs font-bold uppercase tracking-widest text-[var(--accent)] mb-4">Contents</p>
+                    <ul class="space-y-2">
+                        ${sectionNav.innerHTML}
+                    </ul>
+                </div>
+            `;
+        }
+
+        mobileNavContent.innerHTML = drawerHtml;
     }
 });
 
@@ -196,7 +214,7 @@ function buildGlobalSections(currentSection, currentPage) {
         html += `
             <div class="section-item">
                 <a href="${href}" 
-                   class="block text-base font-bold transition-colors ${isActive ? 'text-black' : 'text-[var(--text-secondary)] hover:text-black'}">
+                   class="sidebar-link ${isActive ? 'active' : ''}">
                     ${sectionData.title}
                 </a>
             </div>
@@ -291,15 +309,8 @@ function buildBreadcrumb(section, page, sectionData, pageData) {
     const breadcrumb = document.getElementById('breadcrumb');
     if (!breadcrumb) return;
 
-    let html = `<a href="index.html" class="hover:text-[var(--text)]">Home</a>`;
-    html += `<span class="mx-2">/</span>`;
-    html += `<a href="page.html?section=${section}&page=_index" class="hover:text-[var(--text)]">${sectionData.title}</a>`;
-
-    if (page !== '_index') {
-        html += `<span class="mx-2">/</span>`;
-        html += `<span class="text-[var(--text)]">${pageData.title}</span>`;
-    }
-
+    // V6 style breadcrumb
+    let html = `HOME / ${sectionData.title.toUpperCase()} / <span class="text-[var(--text)]">${pageData.title.toUpperCase()}</span>`;
     breadcrumb.innerHTML = html;
 }
 
@@ -314,20 +325,15 @@ function buildPageNav(section, currentPage, sectionData) {
     const pages = sectionData.pages;
     const currentIndex = pages.findIndex(p => p.slug === currentPage);
 
-    let prevHTML = '<span></span>';
-    let nextHTML = '<span></span>';
+    const prevDiv = currentIndex > 0
+        ? `<div class="flex-1 text-left"><a href="page.html?section=${section}&page=${pages[currentIndex - 1].slug}" class="text-sm font-medium text-[var(--accent-text)] hover:underline opacity-60 group-hover:opacity-100 transition-opacity">← ${pages[currentIndex - 1].title}</a></div>`
+        : '<div class="flex-1"></div>';
 
-    if (currentIndex > 0) {
-        const prev = pages[currentIndex - 1];
-        prevHTML = `<a href="page.html?section=${section}&page=${prev.slug}" class="text-sm font-medium text-[var(--accent-text)] hover:underline">← ${prev.title}</a>`;
-    }
+    const nextDiv = currentIndex < pages.length - 1
+        ? `<div class="flex-1 text-right"><a href="page.html?section=${section}&page=${pages[currentIndex + 1].slug}" class="text-sm font-medium text-[var(--accent-text)] hover:underline opacity-60 group-hover:opacity-100 transition-opacity">${pages[currentIndex + 1].title} →</a></div>`
+        : '<div class="flex-1"></div>';
 
-    if (currentIndex < pages.length - 1) {
-        const next = pages[currentIndex + 1];
-        nextHTML = `<a href="page.html?section=${section}&page=${next.slug}" class="text-sm font-medium text-[var(--accent-text)] hover:underline">${next.title} →</a>`;
-    }
-
-    pageNav.innerHTML = prevHTML + nextHTML;
+    pageNav.innerHTML = prevDiv + nextDiv;
 }
 
 // ================================
@@ -367,12 +373,12 @@ async function loadMarkdown(section, page, pageData, isFactSheet = false) {
         // Update header
         if (headerEl) {
             headerEl.innerHTML = `
-                <div class="flex items-end justify-between mb-8">
-                    <h1 class="font-bold tracking-tight mb-0">${title}</h1>
-                    <div class="flex gap-4">
+                <div class="flex items-end justify-between mb-[28px] border-b border-[var(--border)] pb-[28px]">
+                    <h1 class="mb-0">${title}</h1>
+                    <div class="flex gap-4 mb-[12px]">
                         ${isFactSheet
-                    ? `<a href="page.html?section=${section}&page=${page}" class="text-sm font-bold uppercase tracking-widest text-[var(--accent-text)] hover:underline">View in Standard Manual ›</a>`
-                    : `<a href="page.html?section=${section}&page=${page}&from=directory" class="text-sm font-bold uppercase tracking-widest text-[var(--accent-text)] hover:underline">View as Fact Sheet ›</a>`
+                    ? `<a href="page.html?section=${section}&page=${page}" class="text-xs font-bold uppercase tracking-widest text-[var(--cu-gold)] hover:underline">View in Standard Manual ›</a>`
+                    : `<a href="page.html?section=${section}&page=${page}&from=directory" class="text-xs font-bold uppercase tracking-widest text-[var(--cu-gold)] hover:underline">View as Fact Sheet ›</a>`
                 }
                     </div>
                 </div>
@@ -422,15 +428,39 @@ async function loadMarkdown(section, page, pageData, isFactSheet = false) {
             window.initRevealAnimations();
         }
 
-        // Process visuals inline (Lazy loading and path correction)
-        const visuals = contentEl.querySelectorAll('img');
-        visuals.forEach(el => {
-            el.loading = 'lazy';
-            if (!el.src.includes('content/') && (el.src.startsWith('./') || el.src.startsWith('../'))) {
-                el.src = el.src.replace(/^\.\.?\//, 'images/');
+        // --- V6 Dual Brain Split (Col 4 Restoration) ---
+        const evidenceContainer = document.getElementById('visual-evidence-container');
+        if (evidenceContainer) {
+            evidenceContainer.innerHTML = ''; // Clear previous
+
+            // Move images and blockquotes to Evidence Column
+            const visuals = contentEl.querySelectorAll('img, blockquote, figure');
+
+            if (visuals.length > 0) {
+                visuals.forEach((el, index) => {
+                    // Create a wrapper for the evidence item
+                    const wrapper = document.createElement('div');
+                    wrapper.className = 'evidence-item bg-[var(--bg-secondary)] p-6 border border-[var(--border)] shadow-sm mb-[56px]';
+
+                    // Specific handling for images
+                    if (el.tagName === 'IMG') {
+                        el.loading = 'lazy';
+                        // Convert relative paths
+                        if (!el.src.includes('content/') && (el.src.startsWith('./') || el.src.startsWith('../'))) {
+                            el.src = el.src.replace(/^\.\.?\//, 'images/');
+                        }
+
+                        const cap = el.alt ? `<p class="mt-4 text-[0.65rem] text-[var(--text-secondary)] uppercase tracking-[0.2em] font-bold">${el.alt}</p>` : '';
+                        wrapper.innerHTML = el.outerHTML + cap;
+                    } else {
+                        wrapper.innerHTML = el.outerHTML;
+                    }
+
+                    evidenceContainer.appendChild(wrapper);
+                    el.remove(); // Remove from narrative column
+                });
             }
-            el.classList.add('reveal-up');
-        });
+        }
 
         // Update document title final
         document.title = `${title} | CU Boulder Wayfinding Standards`;
@@ -460,8 +490,8 @@ async function renderPictorialIndex(section, page) {
 
     if (headerEl) {
         headerEl.innerHTML = `
-            <h1 class="text-4xl font-bold tracking-tight mb-4">Signage Pictorial Index</h1>
-            <p class="text-xl text-[var(--text-secondary)] leading-relaxed">Section 4.1 / Technical specifications</p>
+            <h1 class="mb-[28px]">Signage Pictorial Index</h1>
+            <p class="text-[20px] text-[var(--text-secondary)] leading-[28px] uppercase tracking-[0.2em] mb-[28px]">Section 4.1 / Technical specifications</p>
         `;
     }
 
@@ -476,30 +506,17 @@ async function renderPictorialIndex(section, page) {
     ];
 
     const cardsHTML = `
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-12 w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-[56px] mt-[28px] w-full">
             ${signs.map(sign => `
-                <div class="sign-card">
-                    <div class="sign-card-visual">
-                        <div class="sign-code-overlay">${sign.code}</div>
-                        <!-- Placeholder for actual sign image -->
-                        <div class="w-20 h-40 bg-gray-300 opacity-50 relative z-10"></div>
+                <div class="card-v6">
+                    <div class="card-id-tag">${sign.code}</div>
+                    <div class="flex-1">
+                        <h3 class="text-[20px] font-bold mb-[28px] text-[var(--text)] uppercase tracking-widest">${sign.title}</h3>
+                        <p class="text-[18px] leading-[28px] text-[var(--text-secondary)] mb-[28px]">${sign.desc}</p>
                     </div>
-                    <div class="sign-card-content">
-                        <div class="sign-card-header">
-                            <h3 class="sign-card-title">${sign.title}</h3>
-                            <span class="sign-card-tag">${sign.code}</span>
-                        </div>
-                        <p class="sign-card-desc">${sign.desc}</p>
-                        <div class="sign-card-meta">
-                            <div class="meta-item">
-                                <label>Material</label>
-                                <value>${sign.material}</value>
-                            </div>
-                            <div class="meta-item text-right">
-                                <label>Details</label>
-                                <a href="#" class="meta-link">View specs ›</a>
-                            </div>
-                        </div>
+                    <div class="flex items-center gap-[28px] pt-[28px] border-t border-[var(--border)] text-[0.65rem] font-bold uppercase tracking-[0.2em] text-[var(--text-secondary)]">
+                        <span>${sign.material}</span>
+                        <a href="#" class="ml-auto text-[var(--cu-gold)] hover:underline">View specs ›</a>
                     </div>
                 </div>
             `).join('')}
